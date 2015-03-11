@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<title>Test</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#form").submit(function(e) {
+					var getData = $(this).serializeArray()
+					e.preventDefault()
+					$.ajax({
+						'url':"http://api.openweathermap.org/data/2.5/weather",
+						'type':'GET',
+						'data':getData,
+						'success':function(r) {
+							$("#query").html(getData[0].value)
+							if (r.cod == 200) {
+								$("#weather").attr("style","display:block")
+								$("#error").attr("style","display:none")
+								$("#temperature").html(r.main.temp)
+								$("#humidity").html(r.main.humidity)
+								$("#windSpeed").html(r.wind.speed)
+							} else {
+								$("#weather").attr("style","display:none")
+								$("#error").attr("style","display:block")
+								$("#errorType").html(r.cod)
+								$("#errorMessage").html(r.message)
+							}
+							
+						},
+						'error':function(r) {
+							$("#weather").attr("style","display:none")
+							$("#error").attr("style","display:block")
+							$("#errorType").html("Submission Error")
+							$("#errorMessage").html("Please try again later.")
+						}
+					});
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<form id="form">
+			<input type="text" name="q" value="">
+			<input type="submit">
+		</form>
+		<div id="weather" style="display:none;">
+			<h1 id="query"></h1>
+			<h4>Temperature: <span id="temperature"></span> celcius</h4>
+			<h4>Humidity: <span id="humidity"></span>%</h4>
+			<h4>Wind Speed: <span id="windSpeed"></span>m/s</h4>
+		</div>
+		<div id="error" style="display:none;">
+			<h1>Error: <span id="errorType"></span></h1>
+			<h4 id="errorMessage"></h4>
+		</div>
+	</body>
+</html>
