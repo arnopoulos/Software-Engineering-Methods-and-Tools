@@ -1,0 +1,41 @@
+date: Prints the current date and time
+ls -ltr: Prints contents of current directory, file permissions, sorts it by modification date and in reverse order.
+cd ..: Moves pwd to parent directory
+pwd: Prints current working directory
+who: Prints the users for the system
+whoami: Prints who you are currently logged in as
+man man: Prints the manual for man
+env: Prints environmental variables
+
+—————————————————————————————————————————————————————————————————————————————————————————-
+
+mkdir cs3308
+rmdir cs3308 csci3308
+cd /
+cp <nameOfFile> <nameOfFileCopy>
+rm <nameOfFile>
+mkdir tmp && mkdir tmp
+cat <nameOfFile>
+less <nameOfFile>
+head <nameOfFile>
+tail <nameOfFile>
+grep -r 'the' <nameOfDirectory>
+sudo find / -type f -name "books.txt"
+zip dir.zip *
+unzip dir.zip -d tmp
+tar -cf dir.tar *
+tar -xf dir.tar
+touch <nameOfFile>
+
+—————————————————————————————————————————————————————————————————————————————————————————-
+
+sort -t : -k 1 /etc/passwd
+sort -t : -k 3 /etc/passwd
+sort -t : -k 4,4n -k 3,3n /etc/passwd
+grep Marx /etc/passwd
+wc -l /etc/passwd
+wc -l /etc/passwd > tmp
+sudo chmod 777 getUniqueGID.sh
+./getUniqueGID.sh
+Because the '.' prepends the current working directory to the program name.
+sudo chmod ugo+rwx getUniqueGID.sh
