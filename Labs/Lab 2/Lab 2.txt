@@ -1,0 +1,108 @@
+Step 2:
+	cmd: diff fruitsOld.txt fruitsNew.txt
+	- Cranberry, Nectarine and Prickly Pear have been removed from fruitsOld.txt and Jackfruit has been added to fruitsOld.txt
+	- < is used to denote that the string is present in the first file but not the second and > is used to denote the oposite.
+	- -c shows the three lines before and the three lines after the change
+
+Step 3:
+	cmd: wc testPassword.txt
+	- 15
+	- 692
+
+Step 4:
+	cmd: cut -d : -f 1 testPasswd.txt
+	- root
+	  daemon
+	  sys
+	  games
+	  mail
+	  www-data
+	  backup
+	  nobody
+	  syslog
+	  whoopsie
+	  user
+	  sshd
+	  ntp
+	  mysql
+	  vboxadd
+
+	cmd: cut -d " " -f 2 grades.txt
+	- LN
+	  Slaven
+	  Eustathios
+	  Saša
+	  Gerard
+	  Babur
+	  Marin
+	  Marko
+
+Step 5:
+	cmd: cut -d : -f 4 testPasswd.txt | sort | uniq
+	- 0
+	  1
+	  1000
+	  1337
+	  2
+	  3
+	  5
+	  99
+	  999
+
+	cmd: cut -d : -f 4 testPasswd.txt | sort | uniq > ~/output.txt
+
+	cmd: grep ^[m,w,s] testPasswd.txt | cut -d : -f 1,6
+	- sys:/dev
+	  mail:/var/mail
+	  www-data:/var/www
+	  syslog:/home/syslog
+	  whoopsie:/nonexistent
+	  sshd:/var/run/sshd
+	  mysql:/nonexistent
+
+Step 6:
+	-
+		cmd: sed -e 's/[a-zA-Z]//g' leetSpeak.txt
+		- 0 4 34 4 053 70 473 7 0 4'7 43 17 1
+
+		cmd: sed -e 's/[0-9]//g' leetSpeak.txt
+		- yu cn ld  hr  wr bu yu cn' mk  drnk
+
+		cmd: sed -e 's/[0-9]/_/g' leetSpeak.txt
+		- y_u c_n l__d _ h_r__ __ w___r bu_ y_u c_n'_ m_k_ __ dr_nk
+
+	cmd: sed 's/0/o/g' leetSpeak.txt | sed 's/1/i/g' | sed 's/3/e/g' | sed 's/4/a/g' | sed 's/5/s/g' | sed 's/7/t/g'
+	- you can lead a horse to water but you can't make it drink
+		cmd: sed 's/0/o/g' leetSpeak.txt | sed 's/1/i/g' | sed 's/2/z/g' | sed 's/3/e/g' | sed 's/4/a/g' | sed 's/5/s/g'| sed 's/6/g/g' | sed 's/7/t/g' | sed 's/8/b/g' | sed 's/9/g/g'
+
+Step 7:
+	cmd: awk 'BEGIN {print "FN","LN","HWA"} {if (NR!=1){print $1, $2, ($4 + $5 + $6 + $7) / 4}}' grades.txt
+	- FN LN HWA
+	  Ryan Slaven 0.75
+	  Jephthah Eustathios 0.5
+	  Andreas Saša 0.5
+	  Godofredo Gerard 1
+	  Edwin Babur 0.75
+	  Ahmad Marin 0
+	  Jett Marko 0.75
+
+	cmd: awk '{sum += $3} END{print sum/(NR-1)}' grades.txt
+	- 0.714286
+
+Step 8:
+	cmd: grep '\(([0-9]\{3\})\|[0-9]\{3\}\)[ -]\?[0-9]\{3\}[ -]\?[0-9]\{4\}' regex_practice_data.txt | wc -l
+	- 797
+
+	cmd: grep '\((303)\|303\)[ -]\?441[ -]\?[0-9]\{4\}' regex_practice_data.txt | wc -l
+	- 51
+
+	cmd: grep '[.]*@[.]*' regex_practice_data.txt | wc -l
+	- 17706
+
+	cmd: grep '[.]*@[^\.]*\.gov' regex_practice_data.txt | wc -l
+	- 52
+
+	cmd: grep '[.]*@[.]*' regex_practice_data.txt | grep '^[A-Ma-m]' | grep '[\.].*@' | wc -l
+	- 386
+
+
